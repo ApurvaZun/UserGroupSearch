@@ -1,0 +1,38 @@
+.card {
+  padding: 10px 0 20px 0;
+  border: 1px solid #efefef;
+  box-shadow: none;
+}
+.circle-init {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  left: 134px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  opacity: 0.7;
+}
+
+.avatar-initials {
+  color: black;
+  vertical-align: middle;
+  font-weight: bold;
+}
+.card-content {
+  padding-top: 70px !important;
+  text-align: center;
+}
+.applicant-name {
+  font-weight: bold;
+}
+.applicant-status {
+  background-color: gainsboro;
+  margin-top: 20px;
+  display: inline;
+  padding: 2px 20px 2px 20px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
