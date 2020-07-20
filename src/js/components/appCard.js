@@ -5,7 +5,7 @@ import Slider from "react-slick";
 
 class Appcard extends Component {
   render() {
-    var settings = {
+    const settings = {
       dots: true,
       infinite: true,
       speed: 500,
@@ -41,7 +41,7 @@ class Appcard extends Component {
 
     return (
       <div className="container">
-        <h3 className="center">{this.props.title}</h3>
+        <h5 className="center">{this.props.title}</h5>
         <Slider {...settings}>{itemList} </Slider>
       </div>
     );

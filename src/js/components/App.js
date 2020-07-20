@@ -4,14 +4,6 @@ import Header from "./header";
 import Appcard from "./appCard";
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      value: ""
-    };
-  }
-
   render() {
     return (
       <div>
