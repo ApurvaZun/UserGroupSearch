@@ -1,5 +1,5 @@
 const initState = {
-  appointment_set: [
+  applicants: [
     {
       id: 1,
       firstName: "Friedrich",
@@ -24,43 +24,32 @@ const initState = {
       lastName: "Spark",
       telNo: "+49 146 338 98890",
       email: "aspark@gmail.com",
-      status: "appointment_set",
+      status: "viewed",
       bid: 0
     }
   ],
-  viewed: [
-    {
-      id: 4,
-      firstName: "Max",
-      lastName: "Mustermann",
-      telNo: "+49 146 393 87765",
-      email: "mmustermann@gmail.com",
-      status: "viewed",
-      bid: 0
-    },
-    {
-      id: 5,
-      firstName: "Olive",
-      lastName: "Yew",
-      telNo: "+49 146 398 98765",
-      email: "oyew@gmail.com",
-      status: "viewed",
-      bid: 0
-    },
-    {
-      id: 6,
-      firstName: "Aida",
-      lastName: "Bugg",
-      telNo: "+49 146 345 98007",
-      email: "abugg@gmail.com",
-      status: "viewed",
-      bid: 0
-    }
-  ]
+  applicantSearch: []
 };
 
 const applicantReducers = (state = initState, action) => {
-  return state;
+  if (action.type === "APPLICANT_SEARCH") {
+    let group = state.applicants
+      .filter(
+        applicantsMatch =>
+          applicantsMatch.firstName.toLowerCase().startsWith(action.value) ||
+          applicantsMatch.lastName.toLowerCase().startsWith(action.value) ||
+          applicantsMatch.email.toLowerCase().startsWith(action.value)
+      )
+      .reduce((r, a) => {
+        r[a.status] = [...(r[a.status] || []), a];
+        return r;
+      }, {});
+
+    return {
+      ...state,
+      applicantSearch: group
+    };
+  } else return state;
 };
 
 export default applicantReducers;

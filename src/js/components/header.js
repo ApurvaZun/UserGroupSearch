@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 import "./header.scss";
+import { connect } from "react-redux";
+import { searchApp } from "./actions/applicantactions";
 
 class Header extends Component {
   constructor() {
     super();
-
-    this.state = {
-      value: ""
-    };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(events) {
-    debugger;
-    const query = event.target.value;
-    this.setState({
-      value: query
-    });
+    this.props.searchApp(events.target.value);
   }
 
   render() {
@@ -26,7 +21,6 @@ class Header extends Component {
           <input
             placeholder="Search for applicant"
             className="search-applicant"
-            value={this.state.value}
             onChange={this.handleInputChange}
           />
         </form>
@@ -37,4 +31,15 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapDispatchToProps = dispatch => {
+  return {
+    searchApp: value => {
+      dispatch(searchApp(value));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);

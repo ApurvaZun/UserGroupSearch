@@ -4,6 +4,16 @@ import "./card.scss";
 import Slider from "react-slick";
 
 class Appcard extends Component {
+  generateColor() {
+    return {
+      background:
+        "#" +
+        Math.random()
+          .toString(16)
+          .substr(-6)
+    };
+  }
+
   render() {
     const settings = {
       dots: true,
@@ -14,52 +24,48 @@ class Appcard extends Component {
       arrows: true
     };
 
-    let itemList = this.props.appointment_set.map(item => {
-      const style = {
-        backgroundColor: generateColor()
-      };
+    const group =
+      this.props.applicantSearch.length !== 0
+        ? this.props.applicantSearch
+        : this.props.applicants.reduce((r, a) => {
+            r[a.status] = [...(r[a.status] || []), a];
+            return r;
+          }, {});
 
-      const initials = item.firstName.substr(0, 1) + item.lastName.substr(0, 1);
-
-      return (
-        <div className="card" key={item.id}>
-          <i className="material-icons circle circle-init" style={style}>
-            <span className="avatar-initials">{initials}</span>
-          </i>
-
-          <div className="card-content">
-            <p className="applicant-name">
-              {item.firstName} {item.lastName}
-            </p>
-            <p> {item.telNo} </p>
-            <p>{item.email}</p>
-            <p className="applicant-status">{item.status}</p>
-          </div>
-        </div>
-      );
-    });
-
-    return (
-      <div className="container">
-        <h5 className="center">{this.props.title}</h5>
-        <Slider {...settings}>{itemList} </Slider>
+    return Object.keys(group).map(status => (
+      <div className="container" key={status}>
+        <h5>{status}</h5>
+        <Slider {...settings}>
+          {group[status].map(applicants => (
+            <div className="card" key={applicants.id}>
+              <i
+                className="material-icons circle circle-init"
+                style={this.generateColor()}
+              >
+                <span className="avatar-initials">
+                  {applicants.firstName.substr(0, 1) +
+                    applicants.lastName.substr(0, 1)}
+                </span>
+              </i>
+              <div className="card-content">
+                <p className="applicant-name">
+                  {applicants.firstName} {applicants.lastName}
+                </p>
+                <p> {applicants.telNo} </p> <p>{applicants.email}</p>
+                <p className="applicant-status">{applicants.status}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
-    );
+    ));
   }
 }
 
-const generateColor = () => {
-  return (
-    "#" +
-    Math.random()
-      .toString(16)
-      .substr(-6)
-  );
-};
-
 const mapStateToProps = state => {
   return {
-    appointment_set: state.appointment_set
+    applicants: state.applicants,
+    applicantSearch: state.applicantSearch
   };
 };
 
