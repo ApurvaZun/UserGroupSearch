@@ -1,0 +1,23 @@
+input.search-applicant {
+  border: 1px solid #e6e6e6;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 20px;
+
+  &:focus {
+    border-bottom: 1px solid #e6e6e6 !important;
+    box-shadow: 0 1px 0 0 #e6e6e6 !important;
+  }
+}
+
+.fa.fa-search {
+  position: absolute;
+  padding: 15px;
+}
+
+.button-bid {
+  border: 1px solid #e6e6e6;
+  padding: 9px;
+  border-radius: 2px;
+}
