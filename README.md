@@ -1,6 +1,6 @@
 # McMakler_task
 
-### React App for the task is available here 
+### This App is deployed on Heroku and is accesible at the link below
 
 ```bash
 
