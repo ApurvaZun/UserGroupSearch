@@ -10,9 +10,5 @@ const breakpoints = {
 export default function Breakpoint(props) {
   const breakpoint = breakpoints[props.name] || breakpoints.desktop;
 
-  return (
-    <MediaQuery {...props} query={breakpoint}>
-      {props.children}
-    </MediaQuery>
-  );
+  return <MediaQuery query={breakpoint}>{props.children}</MediaQuery>;
 }

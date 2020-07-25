@@ -22,13 +22,19 @@ const applicantReducers = (state = initState, action) => {
       let group = state.applicants
         .filter(
           applicantsMatch =>
-            applicantsMatch.firstName.toLowerCase().startsWith(action.value) ||
-            applicantsMatch.lastName.toLowerCase().startsWith(action.value) ||
-            applicantsMatch.email.toLowerCase().startsWith(action.value)
+            applicantsMatch.firstName
+              .toLowerCase()
+              .includes(action.value.toLowerCase()) ||
+            applicantsMatch.lastName
+              .toLowerCase()
+              .includes(action.value.toLowerCase()) ||
+            applicantsMatch.email
+              .toLowerCase()
+              .includes(action.value.toLowerCase())
         )
-        .reduce((r, a) => {
-          r[a.status] = [...(r[a.status] || []), a];
-          return r;
+        .reduce((res, applicant) => {
+          res[applicant.status] = [...(res[applicant.status] || []), applicant];
+          return res;
         }, {});
 
       return {

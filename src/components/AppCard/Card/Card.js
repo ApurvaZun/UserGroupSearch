@@ -1,6 +1,8 @@
 import React from "react";
 
 const Card = props => {
+  const { firstName, lastName, telNo, email, status, bid } = props.applicants;
+
   return (
     <div className="card">
       <span
@@ -8,16 +10,22 @@ const Card = props => {
         style={generateColor()}
       >
         <span className="avatar-initials">
-          {props.applicants.firstName.substr(0, 1) +
-            props.applicants.lastName.substr(0, 1)}
+          {firstName.substr(0, 1) + lastName.substr(0, 1)}
         </span>
       </span>
       <div className="card-content">
         <p className="applicant-name">
-          {props.applicants.firstName} {props.applicants.lastName}
+          {firstName} {lastName}
         </p>
-        <p> {props.applicants.telNo} </p> <p>{props.applicants.email}</p>
-        <p className="applicant-status">{props.applicants.status}</p>
+        <p> {telNo} </p> <p>{email}</p>
+        <p className="applicant-status">{status}</p>
+        <br />
+        {bid != null ? (
+          <p className="applicant-bid">
+            {" "}
+            BID {bid.amount} {bid.currency}{" "}
+          </p>
+        ) : null}
       </div>
     </div>
   );
