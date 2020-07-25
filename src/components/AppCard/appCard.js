@@ -4,6 +4,7 @@ import Slider from "react-slick";
 
 import "./card.scss";
 import Card from "./Card/Card";
+import Breakpoint from "../Breakpoint/breakPoint";
 import * as actions from "../../store/actions/applicantactions";
 
 class Appcard extends Component {
@@ -25,6 +26,7 @@ class Appcard extends Component {
       slidesToScroll: 1,
       arrows: true
     };
+
     const { applicantSearch, applicants, error } = this.props;
     const group = applicantSearch
       ? applicantSearch
@@ -36,16 +38,37 @@ class Appcard extends Component {
         }, {});
 
     return group == null ? (
-      <div> Loading.. </div>
+      <div className="container">
+        <div> Loading.. </div>
+      </div>
     ) : (
       Object.keys(group).map(status => (
         <div className="container" key={status}>
-          <h5>{status}</h5>
-          <Slider {...settings}>
-            {group[status].map(applicants => (
-              <Card key={applicants.id} applicants={applicants} />
-            ))}
-          </Slider>
+          <p className="status">{status}</p>
+
+          <Breakpoint name="phone">
+            <Slider {...settings}>
+              {group[status].map(applicants => (
+                <Card key={applicants.id} applicants={applicants} />
+              ))}
+            </Slider>
+          </Breakpoint>
+
+          <Breakpoint name="desktop">
+            <div className="desktop-box">
+              {group[status].map(applicants => (
+                <Card key={applicants.id} applicants={applicants} />
+              ))}
+            </div>
+          </Breakpoint>
+
+          <Breakpoint name="tablet">
+            <div className="desktop-box">
+              {group[status].map(applicants => (
+                <Card key={applicants.id} applicants={applicants} />
+              ))}
+            </div>
+          </Breakpoint>
         </div>
       ))
     );

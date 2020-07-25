@@ -3,12 +3,15 @@ import React from "react";
 const Card = props => {
   return (
     <div className="card">
-      <i className="material-icons circle circle-init" style={generateColor()}>
+      <span
+        className="material-icons circle circle-init"
+        style={generateColor()}
+      >
         <span className="avatar-initials">
           {props.applicants.firstName.substr(0, 1) +
             props.applicants.lastName.substr(0, 1)}
         </span>
-      </i>
+      </span>
       <div className="card-content">
         <p className="applicant-name">
           {props.applicants.firstName} {props.applicants.lastName}
