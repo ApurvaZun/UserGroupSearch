@@ -11,11 +11,11 @@ https://mcmakler-react-app.herokuapp.com/
 ### Instructions
 
 ```bash
-1. git clone git@github.com:ApurvaZun/McMakler_task.git
+1. git clone git@github.com:ApurvaZun/UserGroupSearch.git
 
 2. After clone you should have McMakler_task folder
 
-3. cd McMakler_task
+3. cd UserGroupSearch
 
 4. npm install (this will install all dependency)
 
