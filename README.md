@@ -1,12 +1,4 @@
-# McMakler_task
 
-### This App is deployed on Heroku and is accesible at the link below
-
-```bash
-
-https://mcmakler-react-app.herokuapp.com/
-
-```
 
 ### Instructions
 
